@@ -3,7 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
-	"go-study/web/model"
+	"go-study/web/user"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -61,7 +61,7 @@ func TestCreateUserHandler(t *testing.T) {
 
 	username := "foo"
 	userEmail := "foo@email.com"
-	newUser := (&model.User{}).NewUser(username, userEmail)
+	newUser := user.NewUser(username, userEmail)
 	data, _ := json.Marshal(newUser)
 	reader := strings.NewReader(string(data))
 
@@ -73,7 +73,7 @@ func TestCreateUserHandler(t *testing.T) {
 
 	assert.Equal(http.StatusCreated, resp.Code)
 
-	createdUser := new(model.User)
+	createdUser := new(user.User)
 	err := json.NewDecoder(resp.Body).Decode(createdUser)
 
 	assert.Nil(err)

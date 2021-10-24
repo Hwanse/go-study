@@ -1,4 +1,4 @@
-package model
+package user
 
 import "time"
 
@@ -8,10 +8,8 @@ type User struct {
 	CreatedAt 	time.Time	`json:"created_at"`
 }
 
-func (u User) NewUser(name, email string) User {
-	u.Name = name
-	u.Email = email
-	return u
+func NewUser(name string, email string) *User {
+	return &User{Name: name, Email: email}
 }
 
 func (u *User) GenerateCreateTime() {

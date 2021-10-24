@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"go-study/web/model"
+	"go-study/web/user"
 	"net/http"
 )
 
@@ -23,7 +23,7 @@ func FooHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
-	user := new(model.User)
+	user := new(user.User)
 	err := json.NewDecoder(r.Body).Decode(user)
 
 	if err != nil {
